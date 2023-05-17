@@ -1,0 +1,40 @@
+body {
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+}
+
+#question {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#result {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+#counter {
+  font-size: 16px;
+  margin-top: 10px;
+}
+ul {
+  list-style-type: none;
+ 
+}

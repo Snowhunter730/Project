@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Vokabeltrainer</title>
+</head>
+<body>
+    <h1>Vokabeltrainer</h1>
+    
+    <div id="question">Frage</div>
+    <input type="text" id="answer" placeholder="Antwort eingeben">
+    <button onclick="checkAnswer()">Überprüfen</button>
+    
+    <div id="result"></div>
+    <div id="counter"></div>
+    
+    <h2>Eigene Vokabel hinzufügen</h2>
+    <input type="text" id="newQuestion" placeholder="Frage eingeben">
+    <input type="text" id="newAnswer" placeholder="Antwort eingeben">
+    <button onclick="addCustomVocabulary()">Hinzufügen</button>
+    
+    <button onclick="toggleCustomVocabulary()">Liste anzeigen</button>
+    
+    <ul id="customVocabularyList" style="display: none;"></ul>
+    
+    <button onclick="resetProgress()">Zähler zurücksetzen</button>
+    
+    <script src="script.js"></script>
+  </body>
+</html>
