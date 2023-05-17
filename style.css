@@ -36,8 +36,15 @@ button {
   margin-top: 10px;
 }
 
-.customVocabularyList {
+.container_vocabulary {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.customVocabularyList {
+  width: fit-content;
   /* height: fit-content; */
   display: flex;
   flex-direction: row;
