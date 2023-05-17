@@ -67,6 +67,8 @@ button {
   padding-right: 2px;
   }
 
+
+  /* delete button für kleine vokabel karten */
   .deleteButton {
     height: 10px;
     width: 10px;
