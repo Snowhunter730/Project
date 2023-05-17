@@ -20,18 +20,20 @@ let isCustomVocabularyVisible = false;
 function checkAnswer() {
   let currentVocabulary = vocabulary[currentIndex];
   let userAnswer = answerInput.value.trim().toLowerCase();
-  
+
   if (userAnswer === currentVocabulary.answer) {
     resultDiv.innerHTML = "Richtig!";
     correctCount++;
   } else {
-    resultDiv.innerHTML = "Falsch. Die richtige Antwort lautet: " + currentVocabulary.answer;
+    resultDiv.innerHTML =
+      "Falsch. Die richtige Antwort lautet: " + currentVocabulary.answer;
     wrongCount++;
   }
-  
+
   // Zähler aktualisieren
-  counterDiv.innerHTML = "Richtig: " + correctCount + " | Falsch: " + wrongCount;
-  
+  counterDiv.innerHTML =
+    "Richtig: " + correctCount + " | Falsch: " + wrongCount;
+
   // Nächste Vokabel anzeigen
   currentIndex++;
   if (currentIndex < vocabulary.length) {
@@ -40,7 +42,7 @@ function checkAnswer() {
     questionDiv.innerHTML = "Vokabeltraining abgeschlossen.";
     answerInput.style.display = "none";
   }
-  
+
   answerInput.value = "";
   saveProgress(); // Fortschritt speichern
 }
@@ -65,21 +67,27 @@ function loadProgress() {
   let savedCorrectCount = localStorage.getItem("correctCount");
   let savedWrongCount = localStorage.getItem("wrongCount");
   let savedVocabulary = localStorage.getItem("vocabulary");
-  
-  if (savedIndex !== null && savedCorrectCount !== null && savedWrongCount !== null && savedVocabulary !== null) {
+
+  if (
+    savedIndex !== null &&
+    savedCorrectCount !== null &&
+    savedWrongCount !== null &&
+    savedVocabulary !== null
+  ) {
     currentIndex = parseInt(savedIndex);
     correctCount = parseInt(savedCorrectCount);
     wrongCount = parseInt(savedWrongCount);
     vocabulary = JSON.parse(savedVocabulary);
-    
+
     if (currentIndex < vocabulary.length) {
       showQuestion();
     } else {
       questionDiv.innerHTML = "Vokabeltraining abgeschlossen.";
       answerInput.style.display = "none";
     }
-    
-    counterDiv.innerHTML = "Richtig: " + correctCount + " | Falsch: " + wrongCount;
+
+    counterDiv.innerHTML =
+      "Richtig: " + correctCount + " | Falsch: " + wrongCount;
   }
 }
 
@@ -87,21 +95,33 @@ function loadProgress() {
 function addCustomVocabulary() {
   let newQuestion = document.getElementById("newQuestion").value.trim();
   let newAnswer = document.getElementById("newAnswer").value.trim();
-  
+
   if (newQuestion !== "" && newAnswer !== "") {
-    vocabulary.push({ question: newQuestion, answer: newAnswer });
-    document.getElementById("newQuestion").value = "";
-    document.getElementById("newAnswer").value = "";
-    saveProgress();
+    let isDuplicate = vocabulary.some(function (vocab) {
+      return (
+        vocab.question.toLowerCase() === newQuestion.toLowerCase() ||
+        vocab.answer.toLowerCase() === newAnswer.toLowerCase()
+      );
+    });
+
+    if (isDuplicate) {
+      alert("Vokabel existiert bereits");
+    } else {
+      vocabulary.push({ question: newQuestion, answer: newAnswer });
+      document.getElementById("newQuestion").value = "";
+      document.getElementById("newAnswer").value = "";
+      saveProgress();
+      showCustomVocabulary();
+    }
   }
 }
 
 // Funktion zum Anzeigen oder Ausblenden der eigenen Vokabelliste
 function toggleCustomVocabulary() {
   isCustomVocabularyVisible = !isCustomVocabularyVisible;
-  
+
   if (isCustomVocabularyVisible) {
-    customVocabularyList.style.display = "block";
+    customVocabularyList.style.display = "flex";
     showCustomVocabulary();
   } else {
     customVocabularyList.style.display = "none";
@@ -109,13 +129,22 @@ function toggleCustomVocabulary() {
 }
 
 // Funktion zum Anzeigen der eigenen Vokabeln
+
 function showCustomVocabulary() {
   customVocabularyList.innerHTML = "";
-  
+
   for (let i = 0; i < vocabulary.length; i++) {
-    let listItem = document.createElement("li");
-    listItem.textContent = vocabulary[i].question + " - " + vocabulary[i].answer;
+    let listItem = document.createElement("div");
+    listItem.textContent =
+      vocabulary[i].question + " - " + vocabulary[i].answer;
     customVocabularyList.appendChild(listItem);
+    listItem.id = "vocabulary-" + i;
+    customVocabularyList.appendChild(listItem);
+    let deleteItem = document.createElement("button");
+    deleteItem.textContent = "X";
+    deleteItem.classList = "deleteButton";
+    deleteItem.setAttribute("onclick", "deleteVocabulary(" + i + ")");
+    listItem.appendChild(deleteItem);
   }
 }
 
@@ -124,9 +153,16 @@ function resetProgress() {
   currentIndex = 0;
   correctCount = 0;
   wrongCount = 0;
-  answerInput.style.display = "block";
+  answerInput.style.display = "inline-block";
   resultDiv.innerHTML = "";
-  counterDiv.innerHTML = "Richtig: " + correctCount + " | Falsch: " + wrongCount;
+  counterDiv.innerHTML =
+    "Richtig: " + correctCount + " | Falsch: " + wrongCount;
+  saveProgress();
+}
+
+function deleteVocabulary(index) {
+  vocabulary.splice(index, 1);
+  showCustomVocabulary();
   saveProgress();
 }
 

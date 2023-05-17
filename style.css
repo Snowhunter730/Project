@@ -1,6 +1,7 @@
 body {
   text-align: center;
-}
+  margin: 0;
+ }
 
 h1 {
   color: #333;
@@ -34,7 +35,36 @@ button {
   font-size: 16px;
   margin-top: 10px;
 }
-ul {
-  list-style-type: none;
- 
-}
+
+.customVocabularyList {
+  width: 100%;
+  /* height: fit-content; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+  }
+
+.customVocabularyList div {
+  height: 75px;
+  width: 75px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  }
+
+  .deleteButton {
+    height: 10px;
+    width: 10px;
+    /* border-radius: 50%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
