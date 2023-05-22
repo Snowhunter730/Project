@@ -6,6 +6,10 @@ let vocabulary = [
   // Weitere Vokabeln hier hinzufügen
 ];
 
+let vocabularyRepeat = [];
+
+let vocabularyDone = [];
+
 let currentIndex = 0;
 let correctCount = 0;
 let wrongCount = 0;
@@ -161,14 +165,15 @@ function showCustomVocabulary() {
   customVocabularyList.innerHTML = "";
 
   for (let i = 0; i < vocabulary.length; i++) {
-    let listItem = document.createElement("div");
+    let listItem = document.createElement("li");
     listItem.textContent =
       vocabulary[i].question + " - " + vocabulary[i].answer;
     customVocabularyList.appendChild(listItem);
     listItem.id = "vocabulary-" + i;
     customVocabularyList.appendChild(listItem);
+
     let deleteItem = document.createElement("button");
-    deleteItem.textContent = "X";
+    deleteItem.textContent = "-";
     deleteItem.classList = "deleteButton";
     deleteItem.setAttribute(
       "onclick",
@@ -200,6 +205,7 @@ function resetProgress() {
 function deleteVocabulary(index) {
   vocabulary.splice(index, 1);
   showCustomVocabulary();
+  counterDiv.innerHTML = correctCount + " | " + vocabulary.length;
   saveProgress();
 }
 
