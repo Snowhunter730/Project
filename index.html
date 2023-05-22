@@ -8,15 +8,43 @@
     <title>Vokabeltrainer</title>
   </head>
   <body>
-    <h1>Vokabeltrainer</h1>
+    <div class="container-trainer">
+      <div class="container-description">
+        <h1>
+          VOCABULARY <br />
+          TRAINER
+        </h1>
+        <p>
+          Do you learn new words, but forget them after a while? Create your own
+          library and improve your vocabulary by typing in the translation and
+          check if its right.
+        </p>
+      </div>
+      <div class="question-card">
+        <div class="counter">
+          <div id="result"></div>
+          <div id="counter"></div>
+        </div>
+        <div class="question" id="question"></div>
+        <div class="answer-and-button">
+          <input type="text" id="answer" placeholder="Antwort eingeben" />
+          <button id="btn-check" onclick="checkAnswer()">CHECK</button>
+          <button
+            class="btn-next-vocabulary"
+            id="btn-next-vocabulary"
+            style="display: none"
+            onclick="nextQuestion()"
+            ;
+          >
+            NEXT VOCABULARY
+          </button>
+        </div>
+      </div>
+    </div>
 
-    <div id="question">Frage</div>
-    <input type="text" id="answer" placeholder="Antwort eingeben" />
-    <button onclick="checkAnswer()">Überprüfen</button>
-
-    <div id="result"></div>
-    <div id="counter"></div>
     <button onclick="resetProgress()">Zähler zurücksetzen</button>
+
+    <hr />
 
     <h2>Eigene Vokabel hinzufügen</h2>
     <input type="text" id="newQuestion" placeholder="Frage eingeben" />

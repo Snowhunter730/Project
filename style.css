@@ -1,6 +1,12 @@
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
   text-align: center;
   margin: 0;
+  padding-left: 20vw;
+  padding-right: 20vw;
  }
 
 h1 {
@@ -10,6 +16,54 @@ h1 {
 #question {
   font-size: 24px;
   margin: 20px 0;
+}
+
+.container-trainer {
+  /* width: 90vw; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-description {
+  /* border: 1px solid black; */
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: start;
+}
+
+.container-description p, h1 {
+  text-align: left ;
+}
+
+.question-card {
+  height: 350px;
+  width: 300px;
+  padding: 5px;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.288);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.counter {
+  display: flex;
+  justify-content: right;
+}
+
+.question {
+  padding: 50px;
+}
+.question-color-green {
+  background: rgb(111,255,13);
+  background: radial-gradient(circle, rgba(111,255,13,0.4738270308123249) 0%, rgba(255,255,255,1) 70%);
+}
+
+.question-color-red {
+  background: rgb(255,13,13);
+  background: radial-gradient(circle, rgba(255,13,13,0.3337710084033614) 0%, rgba(255,255,255,0.6811099439775911) 66%);
 }
 
 input[type="text"] {
