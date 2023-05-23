@@ -136,7 +136,7 @@ function restartVocabularyTrainer() {
   questionWord.classList = "question-card";
 
   updateCounter();
-  // saveProgress();
+  saveProgress();
   showQuestion();
 }
 
