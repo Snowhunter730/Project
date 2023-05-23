@@ -13,20 +13,22 @@ let btnNextVocabulary = document.getElementById("btn-next-vocabulary");
 
 let customVocabularyList = document.getElementById("customVocabularyList");
 let isCustomVocabularyVisible = false;
+questionDiv.innerHTML = "";
 
 // Funktion zum Überprüfen der Antwort und Farbwechsel
 function checkAnswer() {
   let currentVocabulary = vocabularyRepeat[currentIndex];
   let userAnswer = answerInput.value.trim().toLowerCase();
 
-  let questionWord = document.getElementById("question");
+  let questionWord = document.getElementById("question-card");
   if (userAnswer === currentVocabulary.answer) {
-    questionWord.classList = "question question-color-green";
+    questionWord.classList = "question-card question-color-green";
     vocabularyRepeat.splice(currentIndex, 1);
     correctCount++;
   } else {
-    questionWord.classList = "question question-color-red";
+    questionWord.classList = "question-card question-color-red";
     currentIndex++;
+    questionDiv.innerHTML = "correct answer: " + currentVocabulary.answer;
   }
 
   // eingabefeld und check button nicht anzeigen
@@ -46,8 +48,8 @@ function checkAnswer() {
 
 function nextQuestion() {
   // hintergrund farbe neutralisieren
-  let questionWord = document.getElementById("question");
-  questionWord.classList = "question";
+  let questionWord = document.getElementById("question-card");
+  questionWord.classList = "question-card";
 
   // next vocabulary button entfernen
   btnNextVocabulary.style.display = "none";
@@ -115,7 +117,7 @@ function loadProgress() {
     if (currentIndex < vocabularyRepeat.length) {
       showQuestion();
     } else {
-      questionDiv.innerHTML = "Training completed";
+      questionDiv.innerHTML = "";
       answerInput.style.display = "none";
     }
 
@@ -129,6 +131,10 @@ function restartVocabularyTrainer() {
   vocabularyRepeat = [...vocabulary];
   answerInput.style.display = "inline-block";
   resultDiv.innerHTML = "";
+  answerInput.value = "";
+  let questionWord = document.getElementById("question-card");
+  questionWord.classList = "question-card";
+
   updateCounter();
   // saveProgress();
   showQuestion();

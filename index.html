@@ -24,16 +24,17 @@
             and check if it's right.
           </p>
           <button id="restartButton" onclick="restartVocabularyTrainer()">
-            RESTART TRAINING
+            START TRAINING
           </button>
         </div>
-        <div class="question-card">
+        <div class="question-card" id="question-card">
           <div class="counter">
             <div id="result"></div>
             <div id="counter"></div>
           </div>
           <div class="question" id="question"></div>
           <div class="answer-and-button">
+            <div id="translation"></div>
             <input type="text" id="answer" placeholder="TYPE HERE" />
             <button id="btn-check" onclick="checkAnswer()">CHECK</button>
             <button
