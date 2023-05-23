@@ -1,120 +1,220 @@
 html {
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
   text-align: center;
-  margin: 0;
-  padding-left: 20vw;
-  padding-right: 20vw;
- }
-
-h1 {
-  color: #333;
+  padding-left: 21vw;
+  padding-right: 21vw;
 }
 
-#question {
-  font-size: 24px;
-  margin: 20px 0;
+header {
+  height: 10vh;
 }
 
-.container-trainer {
-  /* width: 90vw; */
+header > img {
+  position: absolute;
+  top: 30px;
+  left: 21.5vw;
+  margin-bottom: 30px;
+}
+
+.container-trainer,
+.bottom {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .container-description {
-  /* border: 1px solid black; */
   max-width: 450px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: start;
+  text-align: left;
 }
 
-.container-description p, h1 {
-  text-align: left ;
+h1 {
+  color: #333;
+  font-size: 3.5rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  line-height: 3.5rem;
+  margin-top: 90px;
+}
+
+.container-description p {
+  max-width: 87%;
+  font-size: 1rem;
+  line-height: 1.3rem;
+  margin-left: 3px;
+  margin-bottom: 63px;
 }
 
 .question-card {
-  height: 350px;
-  width: 300px;
+  height: 450px;
+  width: 350px;
   padding: 5px;
-  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.288);
+  margin-bottom: 50px;
+  box-shadow: 2px 5px 8px 1.5px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
 
-.counter {
-  display: flex;
-  justify-content: right;
+.question {
+  padding: 80px;
+  font-size: 1.5rem;
+  /* margin: 20px 0; */
+  margin-bottom: 50px;
 }
 
-.question {
-  padding: 50px;
-}
 .question-color-green {
-  background: rgb(111,255,13);
-  background: radial-gradient(circle, rgba(111,255,13,0.4738270308123249) 0%, rgba(255,255,255,1) 70%);
+  background: rgb(111, 255, 15);
+  background: radial-gradient(
+    circle,
+    rgba(111, 255, 13, 0.4) 0%,
+    rgba(255, 255, 255, 1) 70%
+  );
 }
 
 .question-color-red {
-  background: rgb(255,13,13);
-  background: radial-gradient(circle, rgba(255,13,13,0.3337710084033614) 0%, rgba(255,255,255,0.6811099439775911) 66%);
+  background: rgb(255, 15, 15);
+  background: radial-gradient(
+    circle,
+    rgba(255, 13, 13, 0.3) 0%,
+    rgba(255, 255, 255, 0.5) 66%
+  );
 }
 
-input[type="text"] {
-  padding: 10px;
-  font-size: 16px;
+.answer-and-button > input[type="text"] {
+  width: 230px;
+  color: rgb(94, 94, 94);
+  font-size: 18px;
+  border: none;
+  border-bottom: 1px solid #333;
+  padding: 8px;
+  margin-bottom: 30px;
+}
+
+.answer-and-button > button {
+  margin-bottom: 30px;
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #333;
+  width: 250px;
+  height: 45px;
+  padding: 10px 20px 8px 20px;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  background-color: #171717;
   color: #fff;
   border: none;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 #result {
-  font-size: 20px;
+  font-size: 1.5rem;
   margin-top: 20px;
 }
 
 #counter {
-  font-size: 16px;
-  margin-top: 10px;
+  font-size: 2rem;
+  padding-left: 250px;
 }
 
-.container_vocabulary {
+.container-addvocabulary,
+.container_list {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  text-align: left;
+  margin-top: 30px;
+  margin-right: 10px;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.container-addvocabulary p {
+  font-size: 1rem;
+  line-height: 1.3rem;
+  margin-left: 3px;
+  margin-bottom: 40px;
+}
+
+.container-addvocabulary > input[type="text"] {
+  width: 350px;
+  color: rgb(94, 94, 94);
+  font-size: 18px;
+  border: none;
+  border-bottom: 1px solid #333;
+  margin-bottom: 40px;
+  padding: 8px;
+}
+
+.container_list > button {
+  margin-top: 15px;
+}
+
+.list-button {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 15px;
 }
 
 .customVocabularyList {
-  width: fit-content;
-  /* height: fit-content; */
+  /* width: fit-content; */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+}
+
+.customVocabularyList {
+  padding-inline-start: 0px;
+}
+
+.customVocabularyList > li {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+  padding: 0;
+  /* padding-bottom: 5px; */
+}
+
+/* delete button für kleine vokabel karten */
+.deleteButton {
+  display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
-  padding: 10px;
-  list-style-type: none;
-  }
+  height: 25px;
+  width: 0px;
+  padding-bottom: 13px;
+  padding-left: 14px;
+  padding-right: 13px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+}
 
-  /* delete button für kleine vokabel karten */
-  .deleteButton {
-    height: 10px;
-    width: 10px;
-    /* border-radius: 50%; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+footer {
+  text-align: right;
+  font-size: 0.9rem;
+  letter-spacing: 0.6px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  margin-right: 8px;
+}
