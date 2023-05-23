@@ -6,11 +6,8 @@ let vocabulary = [
   // Weitere Vokabeln hier hinzufügen
 ];
 
-
-
 let currentIndex = 0;
 let correctCount = 0;
-let totalCount = vocabulary.length; // Gesamtzahl der Vokabeln
 let resultDiv = document.getElementById("result");
 let questionDiv = document.getElementById("question");
 let answerInput = document.getElementById("answer");
@@ -35,8 +32,6 @@ function checkAnswer() {
     questionWord.classList = "question question-color-red";
     wrongAnswers.push(currentVocabulary); // Falsche Antwort zur Liste hinzufügen
   }
-
-  
 
   // eingabefeld und check button nicht anzeigen
 
@@ -72,12 +67,13 @@ function nextQuestion() {
       let nextIndex = vocabulary.length; // Index am Ende der Vokabelliste
       let wrongVocabulary = wrongAnswers.shift(); // Erste falsche Antwort aus der Liste entfernen
       vocabulary.splice(nextIndex, 0, wrongVocabulary); // Falsche Antwort am Ende der Liste wieder einfügen
-    } 
+    }
     showQuestion();
   } else {
     questionDiv.innerHTML = "Training completed.";
     answerInput.style.display = "none";
     addWrongAnswersToVocabulary(); // Falsche Antworten zum Vokabeltrainer hinzufügen
+    vocabulary = filteredVocabularies(vocabulary);
   }
   answerInput.value = "";
   updateCounter();
@@ -89,6 +85,19 @@ function addWrongAnswersToVocabulary() {
   totalCount = vocabulary.length;
 }
 
+// funktion um doppelte vokabeln zu löschen
+
+function filterVocabularies(arr) {
+  const filteredArray = arr.filter(
+    (vocab, index, initArray) =>
+      index ===
+      initArray.findIndex(
+        (index) =>
+          index.question === vocab.question && index.answer === vocab.answer
+      )
+  );
+  return filteredArray;
+}
 
 // Funktion zum Anzeigen der nächsten Frage
 function showQuestion() {
@@ -97,7 +106,7 @@ function showQuestion() {
 }
 // Funktion zum Aktualisieren des Zählers
 function updateCounter() {
-  counterDiv.innerHTML = correctCount + " / " + totalCount;
+  counterDiv.innerHTML = correctCount + " / " + vocabulary.length;
 }
 
 // Funktion zum Speichern des Fortschritts im Local Storage
@@ -133,7 +142,7 @@ function loadProgress() {
       answerInput.style.display = "none";
     }
 
-   updateCounter();
+    updateCounter();
   }
 }
 // Funktion zum Neustarten des Vokabeltrainers
@@ -146,7 +155,6 @@ function restartVocabularyTrainer() {
   saveProgress();
   showQuestion();
 }
-
 
 // Funktion zum Hinzufügen eigener Vokabeln
 function addCustomVocabulary() {
@@ -225,20 +233,19 @@ function resetProgress() {
   wrongCount = 0;
   answerInput.style.display = "inline-block";
   resultDiv.innerHTML = "";
-  counterDiv.innerHTML = correctCount + " | " + vocabulary.length;
+  updateCounter(); // Zähler aktualisieren
   saveProgress();
 }
 
 function deleteVocabulary(index) {
   vocabulary.splice(index, 1);
   showCustomVocabulary();
-  counterDiv.innerHTML = correctCount + " | " + vocabulary.length;
+  updateCounter(); // Zähler aktualisieren
   saveProgress();
 }
 document
   .getElementById("restartButton")
   .addEventListener("click", restartVocabularyTrainer);
-
 
 // Ersten Fortschritt laden oder erste Frage anzeigen
 loadProgress();
