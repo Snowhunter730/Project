@@ -79,8 +79,14 @@ function nextQuestion() {
 // Funktion zum Anzeigen der nächsten Frage
 function showQuestion() {
   // let currentVocabulary = vocabularyRepeat[currentIndex];
-  if (vocabularyRepeat.length !== 0) {
+  if (vocabulary.length !== 0 && currentIndex < vocabularyRepeat.length) {
     questionDiv.innerHTML = vocabularyRepeat[currentIndex].question;
+  } else if (vocabulary.length === 0) {
+    questionDiv.innerHTML = "Add vocabularies to start training";
+    answerInput.style.display = "none";
+  } else {
+    questionDiv.innerHTML = "restart training";
+    answerInput.style.display = "none";
   }
 }
 // Funktion zum Aktualisieren des Zählers
@@ -112,14 +118,14 @@ function loadProgress() {
     currentIndex = parseInt(savedIndex);
     correctCount = parseInt(savedCorrectCount);
     vocabulary = JSON.parse(savedVocabulary);
-    savedVocabularyRepeat = JSON.parse(savedVocabularyRepeat);
+    vocabularyRepeat = JSON.parse(savedVocabularyRepeat);
 
-    if (currentIndex < vocabularyRepeat.length) {
-      showQuestion();
-    } else {
-      questionDiv.innerHTML = "";
-      answerInput.style.display = "none";
-    }
+    // if (currentIndex < vocabularyRepeat.length) {
+    //   showQuestion();
+    // } else {
+    //   questionDiv.innerHTML = "";
+    //   answerInput.style.display = "none";
+    // }
 
     updateCounter();
   }
